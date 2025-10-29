@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyDayflow - 时间线追踪器</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 PyDayflow</h1>
+            <p class="subtitle">自动记录屏幕活动并生成时间线</p>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <h2>录制控制</h2>
+                <div class="button-group">
+                    <button id="startBtn" class="btn btn-primary">开始录制</button>
+                    <button id="stopBtn" class="btn btn-secondary" disabled>停止录制</button>
+                </div>
+                <div class="status-indicator">
+                    <span id="recordingStatus" class="status-badge">未录制</span>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h2>操作</h2>
+                <div class="button-group">
+                    <button id="analyzeBtn" class="btn btn-accent">立即分析</button>
+                    <button id="cleanupBtn" class="btn btn-warning">清理旧数据</button>
+                    <button id="refreshBtn" class="btn btn-info">刷新时间线</button>
+                </div>
+            </div>
+
+            <div class="stats-panel">
+                <h3>系统状态</h3>
+                <div id="stats">
+                    <p>加载中...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-section">
+            <div class="timeline-header">
+                <h2>今日时间线</h2>
+                <input type="date" id="dateSelector" class="date-input">
+            </div>
+            <div id="timeline" class="timeline">
+                <p class="timeline-empty">暂无数据，请开始录制...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
