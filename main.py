@@ -30,9 +30,36 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def print_banner():
+    """Print startup banner"""
+    banner = """
+╔═══════════════════════════════════════════════════════════╗
+║                                                           ║
+║    ██████╗ ██╗   ██╗██████╗  █████╗ ██╗   ██╗            ║
+║    ██╔══██╗╚██╗ ██╔╝██╔══██╗██╔══██╗╚██╗ ██╔╝            ║
+║    ██████╔╝ ╚████╔╝ ██║  ██║███████║ ╚████╔╝             ║
+║    ██╔═══╝   ╚██╔╝  ██║  ██║██╔══██║  ╚██╔╝              ║
+║    ██║        ██║   ██████╔╝██║  ██║   ██║               ║
+║    ╚═╝        ╚═╝   ╚═════╝ ╚═╝  ╚═╝   ╚═╝               ║
+║           ███████╗██╗      ██████╗ ██╗    ██╗            ║
+║           ██╔════╝██║     ██╔═══██╗██║    ██║            ║
+║           █████╗  ██║     ██║   ██║██║ █╗ ██║            ║
+║           ██╔══╝  ██║     ██║   ██║██║███╗██║            ║
+║           ██║     ███████╗╚██████╔╝╚███╔███╔╝            ║
+║           ╚═╝     ╚══════╝ ╚═════╝  ╚══╝╚══╝             ║
+║                                                           ║
+║              自动记录屏幕活动并生成时间线                   ║
+║              Windows版本 - v1.0.0                         ║
+║                                                           ║
+╚═══════════════════════════════════════════════════════════╝
+    """
+    print(banner)
+
+
 def main():
     """Main entry point for PyDayflow"""
     try:
+        print_banner()
         logger.info("Starting PyDayflow...")
         
         # Load configuration
@@ -40,6 +67,20 @@ def main():
         
         # Create Flask app
         app = create_app(config)
+        
+        # Print helpful information
+        print("\n✨ PyDayflow 已启动！")
+        print(f"\n🌐 Web界面: http://localhost:{config.web_port}")
+        print(f"📁 数据目录: {config.data_dir}")
+        print(f"🤖 AI提供商: {config.ai_provider}")
+        print(f"📹 录制帧率: {config.capture_fps} FPS")
+        print(f"⏰ 分析间隔: {config.analysis_interval} 秒")
+        print(f"🗑️  保留天数: {config.retention_days} 天")
+        print("\n💡 提示:")
+        print("  - 打开浏览器访问上面的Web界面地址")
+        print("  - 点击'开始录制'按钮开始追踪您的活动")
+        print("  - 按 Ctrl+C 停止应用")
+        print("\n" + "=" * 60 + "\n")
         
         # Start web server
         logger.info(f"Starting web server on http://localhost:{config.web_port}")
